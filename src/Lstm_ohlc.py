@@ -146,9 +146,9 @@ def build_model(train_raw, train_ohlc, n_input, n_output, resample_step, predict
         train_y = train_y.reshape((train_y.shape[0], train_y.shape[1], 1))
         # define model
         model = Sequential()
-        model.add(LSTM(200, activation='softmax', input_shape=(n_timesteps, n_features)))
+        model.add(LSTM(200, activation='relu', input_shape=(n_timesteps, n_features)))
         model.add(RepeatVector(n_outputs))
-        model.add(LSTM(200, activation='softmax', return_sequences=True))
+        model.add(LSTM(200, activation='relu', return_sequences=True))
         model.add(TimeDistributed(Dense(100, activation='relu')))
         model.add(TimeDistributed(Dense(1)))
         model.compile(loss='mse', optimizer='adam')
