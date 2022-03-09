@@ -91,8 +91,8 @@ def build_model(train_x, train_y):
     else:
         verbose, epochs, batch_size = 1, 14, 512
         model = Sequential()
-        model.add(LSTM(200, return_sequences=True, activation='softmax', input_shape=(train_x.shape[1], train_x.shape[2])))
-        model.add(LSTM(200, activation='softmax', return_sequences=False))
+        model.add(LSTM(200, return_sequences=True, activation='relu', input_shape=(train_x.shape[1], train_x.shape[2])))
+        model.add(LSTM(200, activation='relu', return_sequences=False))
         model.add(Dense(1))
         model.compile(loss='mse', optimizer='adam')
         print(model.summary())
